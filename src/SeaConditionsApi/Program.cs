@@ -24,22 +24,16 @@ builder.Services.AddOpenApi(options =>
 
 WebApplication app = builder.Build();
 
+double failureRate = app.Configuration.GetValue("FAILURE_RATE", 10.0) / 100.0;
+
 app.MapDefaultEndpoints();
 app.MapOpenApi();
 
-app.MapGet("/conditions", () =>
+app.MapGet("/conditions", Results<Ok<SeaCondition>, ProblemHttpResult> () =>
 {
-    SeaCondition condition = GenerateCondition();
-    return TypedResults.Ok(condition);
-})
-.WithName("GetSeaConditions")
-.WithDescription("Returns a randomly generated sea condition report.");
+    bool isFailing = Random.Shared.NextDouble() < failureRate;
 
-app.MapGet("/conditions/unreliable", Results<Ok<SeaCondition>, ProblemHttpResult> () =>
-{
-    bool isUnreliable = Random.Shared.NextDouble() < 0.4;
-
-    if (isUnreliable)
+    if (isFailing)
     {
         return TypedResults.Problem(
             detail: "The seas are too treacherous to report!",
@@ -49,8 +43,8 @@ app.MapGet("/conditions/unreliable", Results<Ok<SeaCondition>, ProblemHttpResult
     SeaCondition condition = GenerateCondition();
     return TypedResults.Ok(condition);
 })
-.WithName("GetSeaConditionsUnreliable")
-.WithDescription("Returns a randomly generated sea condition report, but may fail unpredictably.");
+.WithName("GetSeaConditions")
+.WithDescription("Returns a randomly generated sea condition report. Failure rate is configurable via the FAILURE_RATE environment variable.");
 
 app.UseHttpsRedirection();
 

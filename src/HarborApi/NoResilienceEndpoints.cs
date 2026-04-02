@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace VictorFrye.ChaosSeas.HarborApi;
 
-public static class CalmSeasEndpoints
+public static class NoResilienceEndpoints
 {
     internal record VoyageReport(
         string Voyage,
@@ -13,25 +13,24 @@ public static class CalmSeasEndpoints
         string Message,
         DateTimeOffset Timestamp);
 
-    public static IServiceCollection AddCalmSeasServices(this IServiceCollection services)
+    public static IServiceCollection AddNoResilienceServices(this IServiceCollection services)
     {
-        services.AddHttpClient("CalmSeas", static client =>
+        services.AddHttpClient("NoResilience", static client =>
         {
             client.BaseAddress = new Uri("https+http://sea-conditions-api");
-        })
-        .AddStandardResilienceHandler();
+        });
 
         return services;
     }
 
-    public static IEndpointRouteBuilder MapCalmSeasEndpoints(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapNoResilienceEndpoints(this IEndpointRouteBuilder endpoints)
     {
-        var group = endpoints.MapGroup("/voyage/calm-seas")
-            .WithTags("Calm Seas");
+        var group = endpoints.MapGroup("/voyage/no-resilience")
+            .WithTags("No Resilience");
 
         group.MapGet("/", async (IHttpClientFactory factory, CancellationToken cancellationToken) =>
         {
-            HttpClient client = factory.CreateClient("CalmSeas");
+            HttpClient client = factory.CreateClient("NoResilience");
 
             try
             {
@@ -39,25 +38,25 @@ public static class CalmSeasEndpoints
                     "/conditions", cancellationToken);
 
                 return Results.Ok(new VoyageReport(
-                    Voyage: "Calm Seas",
+                    Voyage: "No Resilience",
                     Status: "Success",
                     Conditions: conditions,
-                    Message: "The standard resilience handler kept our voyage on course!",
+                    Message: "The ship returned — but only by luck. No resilience pipeline protected this voyage!",
                     Timestamp: DateTimeOffset.UtcNow));
             }
             catch (HttpRequestException)
             {
                 return Results.Json(new VoyageReport(
-                    Voyage: "Calm Seas",
+                    Voyage: "No Resilience",
                     Status: "Failed",
                     Conditions: null,
-                    Message: "Even with resilience, the seas proved too rough. The circuit breaker has opened!",
+                    Message: "Ship lost at sea! Without retries or circuit breakers, a single failure sinks the voyage.",
                     Timestamp: DateTimeOffset.UtcNow),
                     statusCode: StatusCodes.Status503ServiceUnavailable);
             }
         })
-        .WithName("GetCalmSeasVoyage")
-        .WithDescription("Demonstrates AddStandardResilienceHandler protecting against an unreliable downstream service.");
+        .WithName("GetNoResilienceVoyage")
+        .WithDescription("Demonstrates what happens without any Polly resilience pipeline — no retries, no circuit breaker, no timeout.");
 
         return endpoints;
     }

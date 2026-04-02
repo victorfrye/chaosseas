@@ -26,12 +26,13 @@ int requestCount = args.Length > 1 && int.TryParse(args[1], out int count) ? cou
 
 string path = scenario switch
 {
+    "no-resilience" => "/voyage/no-resilience",
     "calm-seas" => "/voyage/calm-seas",
     "rough-seas-faults" => "/voyage/rough-seas/faults",
     "rough-seas-latency" => "/voyage/rough-seas/latency",
     "rough-seas-outcomes" => "/voyage/rough-seas/outcomes",
     "game-day" => "/voyage/game-day",
-    _ => "/voyage/calm-seas"
+    _ => "/voyage/no-resilience"
 };
 
 Console.WriteLine();

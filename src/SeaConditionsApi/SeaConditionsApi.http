@@ -1,11 +1,7 @@
 @host = https://localhost:7202
 
-### Get reliable sea conditions
+### Get sea conditions (failure rate controlled by FAILURE_RATE env var)
 GET {{host}}/conditions
-Accept: application/json
-
-### Get unreliable sea conditions (~40% failure rate)
-GET {{host}}/conditions/unreliable
 Accept: application/json
 
 ### Get OpenAPI document

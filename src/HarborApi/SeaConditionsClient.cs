@@ -8,11 +8,6 @@ public class SeaConditionsClient(HttpClient httpClient)
     {
         return await httpClient.GetFromJsonAsync<SeaConditionsResponse>("/conditions", cancellationToken);
     }
-
-    public async Task<SeaConditionsResponse?> GetUnreliableConditionsAsync(CancellationToken cancellationToken = default)
-    {
-        return await httpClient.GetFromJsonAsync<SeaConditionsResponse>("/conditions/unreliable", cancellationToken);
-    }
 }
 
 public record SeaConditionsResponse(

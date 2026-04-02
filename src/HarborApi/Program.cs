@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.Services.AddNoResilienceServices();
 builder.Services.AddCalmSeasServices();
 builder.Services.AddRoughSeasServices();
 builder.Services.AddGameDayServices();
@@ -34,6 +35,7 @@ app.UseExceptionHandler();
 app.MapDefaultEndpoints();
 app.MapOpenApi().CacheOutput(p => p.Expire(TimeSpan.FromDays(1)));
 
+app.MapNoResilienceEndpoints();
 app.MapCalmSeasEndpoints();
 app.MapRoughSeasEndpoints();
 app.MapGameDayEndpoints();

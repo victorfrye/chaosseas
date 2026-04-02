@@ -9,6 +9,7 @@
     <RootNamespace>VictorFrye.ChaosSeas.HarborApi</RootNamespace>
 
     <UserSecretsId>e7a2c4b1-3f5d-4a8e-9c1b-2d6f8e3a7b4c</UserSecretsId>
+    <NoWarn>$(NoWarn);EXTEXP0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

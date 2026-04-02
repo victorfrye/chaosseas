@@ -2,6 +2,8 @@ using System.Net.Http.Json;
 
 using Microsoft.AspNetCore.Http.HttpResults;
 
+using Microsoft.Extensions.Http.Resilience;
+
 namespace VictorFrye.ChaosSeas.HarborApi;
 
 public static class NoResilienceEndpoints
@@ -18,7 +20,8 @@ public static class NoResilienceEndpoints
         services.AddHttpClient("NoResilience", static client =>
         {
             client.BaseAddress = new Uri("https+http://sea-conditions-api");
-        });
+        })
+        .RemoveAllResilienceHandlers();
 
         return services;
     }

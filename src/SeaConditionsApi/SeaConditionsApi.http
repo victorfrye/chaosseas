@@ -1,0 +1,13 @@
+@host = https://localhost:7202
+
+### Get reliable sea conditions
+GET {{host}}/conditions
+Accept: application/json
+
+### Get unreliable sea conditions (~40% failure rate)
+GET {{host}}/conditions/unreliable
+Accept: application/json
+
+### Get OpenAPI document
+GET {{host}}/openapi/v1.json
+Accept: application/json

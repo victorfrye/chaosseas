@@ -1,0 +1,46 @@
+@host = https://localhost:7201
+
+### ===================================
+### Demo 1: Calm Seas — Resilience Fundamentals
+### ===================================
+
+### Get sea conditions via resilient client
+### (Downstream fails ~40% — retries and circuit breaker kick in)
+GET {{host}}/voyage/calm-seas
+Accept: application/json
+
+### ===================================
+### Demo 2: Rough Seas — Chaos Injection
+### ===================================
+
+### Fault Injection — 50% chance of HttpRequestException
+GET {{host}}/voyage/rough-seas/faults
+Accept: application/json
+
+### Latency Injection — 50% chance of 3-second delay
+GET {{host}}/voyage/rough-seas/latency
+Accept: application/json
+
+### Outcome Injection — 50% chance of HTTP 500
+GET {{host}}/voyage/rough-seas/outcomes
+Accept: application/json
+
+### ===================================
+### Demo 3: Game Day — Feature Flag Chaos
+### ===================================
+
+### Check current feature flag status
+GET {{host}}/voyage/game-day/status
+Accept: application/json
+
+### Trigger game day voyage (chaos gated by feature flags)
+GET {{host}}/voyage/game-day
+Accept: application/json
+
+### ===================================
+### OpenAPI
+### ===================================
+
+### Get OpenAPI document
+GET {{host}}/openapi/v1.json
+Accept: application/json

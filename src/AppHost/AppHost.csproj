@@ -1,0 +1,21 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>VictorFrye.ChaosSeas.AppHost</AssemblyName>
+    <RootNamespace>VictorFrye.ChaosSeas.AppHost</RootNamespace>
+
+    <UserSecretsId>da35b8c1-7f1a-4a2e-b6d3-9c4e8f2a1b5d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HarborApi\HarborApi.csproj" />
+    <ProjectReference Include="..\SeaConditionsApi\SeaConditionsApi.csproj" />
+    <ProjectReference Include="..\Voyager\Voyager.csproj" />
+  </ItemGroup>
+
+</Project>

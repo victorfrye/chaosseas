@@ -8,6 +8,7 @@
 
     <AssemblyName>voyager</AssemblyName>
     <RootNamespace>VictorFrye.ChaosSeas.VoyagerCli</RootNamespace>
+    <NoWarn>$(NoWarn);EXTEXP0001</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

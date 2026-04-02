@@ -2,6 +2,7 @@ using System.Diagnostics;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Http.Resilience;
 
 using VictorFrye.ChaosSeas.Extensions.ServiceDefaults;
 
@@ -12,7 +13,7 @@ builder.Services.AddHttpClient("Voyager", static client =>
 {
     client.BaseAddress = new Uri("https+http://harbor-api");
     client.Timeout = TimeSpan.FromSeconds(30);
-});
+}).RemoveAllResilienceHandlers();
 
 IHost host = builder.Build();
 await host.StartAsync();

@@ -1,9 +1,14 @@
+using System.Text.Json.Serialization;
+
 using Microsoft.AspNetCore.Http.HttpResults;
 
 using VictorFrye.ChaosSeas.Extensions.ServiceDefaults;
 using VictorFrye.ChaosSeas.SeaConditionsApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.AddServiceDefaults();
 

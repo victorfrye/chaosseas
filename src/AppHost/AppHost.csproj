@@ -8,6 +8,7 @@
 
     <AssemblyName>VictorFrye.ChaosSeas.AppHost</AssemblyName>
     <RootNamespace>VictorFrye.ChaosSeas.AppHost</RootNamespace>
+    <NoWarn>$(NoWarn);ASPIREINTERACTION001</NoWarn>
 
     <UserSecretsId>da35b8c1-7f1a-4a2e-b6d3-9c4e8f2a1b5d</UserSecretsId>
   </PropertyGroup>

@@ -72,25 +72,7 @@ voyager.WithCommand(
         voyageScenario = result.Data[0].Value ?? "calm-seas";
         voyageCount = result.Data[1].Value ?? "10";
 
-        ResourceCommandService commandService = context.ServiceProvider
-            .GetRequiredService<ResourceCommandService>();
-
-        try
-        {
-            await commandService.ExecuteCommandAsync(
-                voyager.Resource, "stop", context.CancellationToken);
-        }
-        catch
-        {
-            // Resource may not be running, that's expected
-        }
-
-        ExecuteCommandResult startResult = await commandService.ExecuteCommandAsync(
-            voyager.Resource, "start", context.CancellationToken);
-
-        return startResult.Success
-            ? CommandResults.Success()
-            : CommandResults.Failure(startResult.ErrorMessage ?? "Failed to start voyage.");
+        return CommandResults.Success();
     },
     commandOptions: new CommandOptions
     {

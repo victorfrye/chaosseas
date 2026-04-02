@@ -24,8 +24,8 @@ var voyager = builder.AddProject<Projects.Voyager>("voyager")
     .WithExplicitStart();
 
 voyager.WithCommand(
-    name: "launch-voyage",
-    displayName: "Launch Voyage",
+    name: "plan-voyage",
+    displayName: "Plan Voyage",
     executeCommand: async context =>
     {
         IInteractionService interactionService = context.ServiceProvider
@@ -37,7 +37,7 @@ voyager.WithCommand(
         }
 
         var result = await interactionService.PromptInputsAsync(
-            title: "🏴\u200d☠️ Launch Voyage",
+            title: "🏴\u200d☠️ Plan Voyage",
             message: "Configure your chaos engineering voyage:",
             inputs:
             [

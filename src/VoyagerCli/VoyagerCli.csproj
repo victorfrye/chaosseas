@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <AssemblyName>VictorFrye.ChaosSeas.Voyager</AssemblyName>
-    <RootNamespace>VictorFrye.ChaosSeas.Voyager</RootNamespace>
+    <AssemblyName>voyager</AssemblyName>
+    <RootNamespace>VictorFrye.ChaosSeas.VoyagerCli</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -429,3 +429,5 @@ FodyWeavers.xsd
 
 # EF Core Migrations
 **/Migrations/**/*.Designer.cs
+.aspire/
+aspire.config.json

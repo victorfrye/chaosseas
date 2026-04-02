@@ -18,7 +18,7 @@ var harborApi = builder.AddProject<Projects.HarborApi>("harbor-api")
     .WaitFor(seaConditions)
     .WithHttpHealthCheck("/alive");
 
-var voyager = builder.AddProject<Projects.Voyager>("voyager")
+var voyager = builder.AddProject<Projects.VoyagerCli>("voyager")
     .WithReference(harborApi)
     .WaitFor(harborApi)
     .WithArgs(context =>

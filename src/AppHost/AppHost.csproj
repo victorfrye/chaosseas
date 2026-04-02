@@ -1,4 +1,4 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
+<Project Sdk="Aspire.AppHost.Sdk/13.2.1">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -16,7 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HarborApi\HarborApi.csproj" />
     <ProjectReference Include="..\SeaConditionsApi\SeaConditionsApi.csproj" />
-    <ProjectReference Include="..\Voyager\Voyager.csproj" />
+    <ProjectReference Include="..\VoyagerCli\VoyagerCli.csproj" />
   </ItemGroup>
 
 </Project>

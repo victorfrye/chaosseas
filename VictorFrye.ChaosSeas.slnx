@@ -12,7 +12,7 @@
   <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
   <Project Path="src/HarborApi/HarborApi.csproj" />
   <Project Path="src/SeaConditionsApi/SeaConditionsApi.csproj" />
-  <Project Path="src/Voyager/Voyager.csproj" />
+  <Project Path="src/VoyagerCli/VoyagerCli.csproj" />
   <Project Path="test/Integration/Integration.Tests.csproj" />
   <Project Path="test/HarborApi/HarborApi.Tests.csproj" />
 </Solution>
